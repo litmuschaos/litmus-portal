@@ -5,18 +5,27 @@ package graph
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/brainsolution/maya-service/graph/generated"
 	"github.com/brainsolution/maya-service/graph/model"
+	"github.com/satori/go.uuid"
 )
 
 func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {
-	panic(fmt.Errorf("not implemented"))
+	newID := uuid.NewV4().String()
+
+	newTodo := &model.Todo{
+		ID:    newID,
+		Text: input.Text,
+	}
+
+	r.todos = append(r.todos, newTodo)
+
+	return newTodo, nil
 }
 
 func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
-	panic(fmt.Errorf("not implemented"))
+	return r.todos, nil
 }
 
 // Mutation returns generated.MutationResolver implementation.

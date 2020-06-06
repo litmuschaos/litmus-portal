@@ -5,7 +5,9 @@
 ## Set up environments
 1) Install dependencies
 ```bash
-go get github.com/99designs/gqlgengo get github.com/gorilla/muxgo get github.com/globalsign/mgo
+go get github.com/99designs/gqlgengo get github.com/gorilla/mux
+go get github.com/globalsign/mgo
+go get github.com/satori/go.uuid
 ```
 
 ```bash

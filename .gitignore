@@ -4,3 +4,4 @@ out/
 vendor/
 _vendor-*
 .air.conf
+tmp/

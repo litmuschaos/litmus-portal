@@ -7,17 +7,20 @@ import (
 
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
+	"github.com/brainsolution/maya-service/db"
 	"github.com/brainsolution/maya-service/graph"
 	"github.com/brainsolution/maya-service/graph/generated"
 )
 
 const defaultPort = "8080"
 
-func main() {
+func graphqlServer() {
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = defaultPort
 	}
+
+	db.ConnectDB()
 
 	srv := handler.NewDefaultServer(generated.NewExecutableSchema(generated.Config{Resolvers: &graph.Resolver{}}))
 
