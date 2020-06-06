@@ -1,20 +1,15 @@
 package graph
 
-import "github.com/globalsign/mgo"
+import (
+	// "github.com/brainsolution/maya-service/graph/generated"
+	"github.com/brainsolution/maya-service/graph/model"
+)
 
 // type Resolver struct {}
 
 type Resolver struct {
-	users *mgo.Collection
+	todos []*model.Todo
 }
-
-// func New() Config {
-// 	return Config {
-// 		Resolvers: &Resolver{
-// 			users: db.GetCollection("users"),
-// 		},
-// 	}
-// }
 
 // func (r *Resolver) Mutation() MutationResolver {
 // 	r.users = db.GetCollection("users")
@@ -22,7 +17,7 @@ type Resolver struct {
 // }
 
 // func (r *Resolver) Query() QueryResolver {
-// 	r.users = db.GetCollection("users")
+// 	r.users = db.GetCollection("todos")
 // 	return &queryResolver{r}
 // }
 

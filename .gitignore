@@ -3,3 +3,4 @@ go-kubernetes
 out/
 vendor/
 _vendor-*
+.air.conf

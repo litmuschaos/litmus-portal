@@ -1,4 +1,4 @@
-package main
+package dev
 
 import (
 	"context"
@@ -13,7 +13,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func handler(w http.ResponseWriter, r *http.Request) {
+func restHandler(w http.ResponseWriter, r *http.Request) {
 	query := r.URL.Query()
 	name := query.Get("name")
 	if name == "" {
@@ -42,11 +42,11 @@ func readinessHandler(w http.ResponseWriter, r *http.Request) {
 // 	}
 // }
 
-func main() {
+func dev() {
 	// Create Server and Route Handlers
 	r := mux.NewRouter()
 
-	r.HandleFunc("/", handler)
+	r.HandleFunc("/", restHandler)
 	// r.POST("/query", graphqlHandler())
 	r.HandleFunc("/health", healthHandler)
 	r.HandleFunc("/readiness", readinessHandler)
