@@ -14,5 +14,7 @@ go get github.com/pkg/errorsgo get github.com/urfave/cligo get golang.org/x/tool
 
 2) Create database
 ```bash
+rm graph/schema.resolvers.go && gqlgen generate
+
 go run scripts/gqlgen.go init
 ```

@@ -15,7 +15,7 @@ spec:
     spec:                        # Spec for the container which will run in the Pod
       containers:
       - name: maya-app
-        image: callicoder/go-hello-world:1.0.0 
+        image: maya/k8s-cre:1.0.0 
         imagePullPolicy: Always
         ports:
           - containerPort: 8080  # Should match the port number that the Go application listens on

@@ -7,8 +7,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/callicoder/go-kubernetes/graph/generated"
-	"github.com/callicoder/go-kubernetes/graph/model"
+	"https://github.com/brainsolution/maya-service/graph/generated"
+	"https://github.com/brainsolution/maya-service/graph/model"
 )
 
 func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {

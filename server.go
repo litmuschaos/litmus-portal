@@ -7,8 +7,8 @@ import (
 
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
-	"github.com/callicoder/go-kubernetes/graph"
-	"github.com/callicoder/go-kubernetes/graph/generated"
+	"https://github.com/brainsolution/maya-service/graph"
+	"https://github.com/brainsolution/maya-service/graph/generated"
 )
 
 const defaultPort = "8080"
