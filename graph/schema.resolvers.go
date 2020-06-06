@@ -7,8 +7,8 @@ import (
 	"context"
 	"fmt"
 
-	"https://github.com/brainsolution/maya-service/graph/generated"
-	"https://github.com/brainsolution/maya-service/graph/model"
+	"github.com/brainsolution/maya-service/graph/generated"
+	"github.com/brainsolution/maya-service/graph/model"
 )
 
 func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {
@@ -16,7 +16,8 @@ func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) 
 }
 
 func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
-	panic(fmt.Errorf("not implemented"))
+	return nil, nil
+	// panic(fmt.Errorf("not implemented"))
 }
 
 // Mutation returns generated.MutationResolver implementation.

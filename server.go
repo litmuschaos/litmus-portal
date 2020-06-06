@@ -7,8 +7,8 @@ import (
 
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
-	"https://github.com/brainsolution/maya-service/graph"
-	"https://github.com/brainsolution/maya-service/graph/generated"
+	"github.com/brainsolution/maya-service/graph"
+	"github.com/brainsolution/maya-service/graph/generated"
 )
 
 const defaultPort = "8080"

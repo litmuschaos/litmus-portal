@@ -11,7 +11,6 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
-	"github.com/99designs/gqlgen/graphql/handler"
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
@@ -32,16 +31,16 @@ func readinessHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 
-// Defining the Graphql handler
-func graphqlHandler() gin.HandlerFunc {
-	// NewExecutableSchema and Config are in the generated.go file
-	// Resolver is in the resolver.go file
-	h := handler.NewDefaultServer(generated.NewExecutableSchema(generated.Config{Resolvers: &graph.Resolver{}}))
+// // Defining the Graphql handler
+// func graphqlHandler() gin.HandlerFunc {
+// 	// NewExecutableSchema and Config are in the generated.go file
+// 	// Resolver is in the resolver.go file
+// 	h := handler.NewDefaultServer(generated.NewExecutableSchema(generated.Config{Resolvers: &graph.Resolver{}}))
 
-	return func(c *gin.Context) {
-		h.ServeHTTP(c.Writer, c.Request)
-	}
-}
+// 	return func(c *gin.Context) {
+// 		h.ServeHTTP(c.Writer, c.Request)
+// 	}
+// }
 
 func main() {
 	// Create Server and Route Handlers

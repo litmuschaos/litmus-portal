@@ -1,4 +1,4 @@
-module https://github.com/brainsolution/maya-service
+module github.com/brainsolution/maya-service
 
 require (
 	github.com/99designs/gqlgen v0.11.3
