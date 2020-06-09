@@ -10,6 +10,7 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"github.com/gin-gonic/gin"
 	"github.com/99designs/gqlgen/graphql/handler"
@@ -50,6 +51,14 @@ func graphqlHandler() gin.HandlerFunc {
 func main() {
 	// Create Server and Route Handlers
 	r := mux.NewRouter()
+
+	cors := handlers.CORS(
+		handlers.AllowedHeaders([]string{"content-type"}),
+		handlers.AllowedOrigins([]string{"*"}),
+		handlers.AllowCredentials(),
+	)
+
+	r.Use(cors)
 
 	r.HandleFunc("/", restHandler)
 	r.HandleFunc("/health", healthHandler)
