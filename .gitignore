@@ -5,3 +5,6 @@ vendor/
 _vendor-*
 .air.conf
 tmp/
+frontend2/
+**/node_modules/
+.env

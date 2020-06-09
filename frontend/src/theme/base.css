@@ -1,0 +1,11 @@
+@tailwind preflight;
+@tailwind utilities;
+
+/* Your custom CSS here */
+@import "~react-vis/dist/style.css";
+
+html,
+body {
+  position: fixed;
+  overflow: hidden;
+}
