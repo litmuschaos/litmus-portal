@@ -12,11 +12,11 @@ import (
 
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
-	"github.com/gin-gonic/gin"
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
 	"github.com/brainsolution/maya-service/graph"
 	"github.com/brainsolution/maya-service/graph/generated"
+	"github.com/brainsolution/maya-service/controller"
 )
 
 func restHandler(w http.ResponseWriter, r *http.Request) {
@@ -27,25 +27,6 @@ func restHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	log.Printf("Received request for %s\n", name)
 	w.Write([]byte(fmt.Sprintf("Hello, %s\n", name)))
-}
-
-func healthHandler(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(http.StatusOK)
-}
-
-func readinessHandler(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(http.StatusOK)
-}
-
-// Defining the Graphql handler
-func graphqlHandler() gin.HandlerFunc {
-	// NewExecutableSchema and Config are in the generated.go file
-	// Resolver is in the resolver.go file
-	h := handler.NewDefaultServer(generated.NewExecutableSchema(generated.Config{Resolvers: &graph.Resolver{}}))
-
-	return func(c *gin.Context) {
-		h.ServeHTTP(c.Writer, c.Request)
-	}
 }
 
 func main() {
@@ -61,8 +42,12 @@ func main() {
 	r.Use(cors)
 
 	r.HandleFunc("/", restHandler)
-	r.HandleFunc("/health", healthHandler)
-	r.HandleFunc("/readiness", readinessHandler)
+	r.HandleFunc("/signup", controller.RegisterHandler).
+		Methods("POST")
+	r.HandleFunc("/login", controller.LoginHandler).
+		Methods("POST")
+	r.HandleFunc("/profile", controller.ProfileHandler).
+		Methods("GET")
 	
 	// GraphQL Hanlder
 	graphqlSrv := handler.NewDefaultServer(generated.NewExecutableSchema(generated.Config{Resolvers: &graph.Resolver{}}))

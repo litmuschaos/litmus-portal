@@ -19,10 +19,6 @@ export function bootstrap() {
     if (token) {
       dispatch(setToken(token));
       dispatch(loadCurrentUser());
-      dispatch(getLatestTransactions());
-      dispatch(getTotals());
-      dispatch(getTotalsByDay());
-      dispatch(getTotalsByTags());
     }
   };
 }

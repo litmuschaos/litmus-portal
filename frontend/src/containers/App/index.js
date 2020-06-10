@@ -23,8 +23,6 @@ export default function App() {
       <Home path="/" />
       <Full path="/app">
         <Dashboard path="dashboard" />
-        <TransactionAdd path="transactions/add/expense" isExpense />
-        <TransactionAdd path="transactions/add/income" isExpense={false} />
       </Full>
       <Full path="/auth">
         <Login path="login" />
