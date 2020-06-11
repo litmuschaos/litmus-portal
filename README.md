@@ -1,8 +1,7 @@
 # Maya
 
 
-
-## Set up environments
+## Set up backend environments
 1) Install dependencies
 ```bash
 go get github.com/99designs/gqlgengo get github.com/gorilla/mux
@@ -19,4 +18,10 @@ go get github.com/pkg/errorsgo get github.com/urfave/cligo get golang.org/x/tool
 rm graph/schema.resolvers.go && gqlgen generate
 
 go run scripts/gqlgen.go init
+```
+
+## Set up frontend environments
+```bash
+npm install
+npm run start
 ```

@@ -11,15 +11,15 @@ import (
 	"net/http"
 
 	jwt "github.com/dgrijalva/jwt-go"
-	"github.com/mongodb/mongo-go-driver/bson"
+	"go.mongodb.org/mongo-driver/bson"
 	"golang.org/x/crypto/bcrypt"
 )
 
 func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 
-	w.Header().Set("Content-Type", "application/json")
 	var user model.User
 	body, _ := ioutil.ReadAll(r.Body)
+
 	err := json.Unmarshal(body, &user)
 	var res model.ResponseResult
 	if err != nil {
@@ -28,15 +28,16 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	collection, err := db.GetCollection("users")
+	collection, err := db.GetDBCollection()
 
 	if err != nil {
 		res.Error = err.Error()
+		fmt.Sprintf("Register api error:  %s\n", err.Error())
 		json.NewEncoder(w).Encode(res)
 		return
 	}
 	var result model.User
-	err = collection.FindOne(context.TODO(), bson.D{{"username", user.Username}}).Decode(&result)
+	err = collection.FindOne(context.TODO(), bson.D{{"email", user.Email}}).Decode(&result)
 
 	if err != nil {
 		if err.Error() == "mongo: no documents in result" {
@@ -49,14 +50,31 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 			}
 			user.Password = string(hash)
 
+			token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+				"username":  	user.Username,
+				"email": 		user.Email,
+			})
+
+			tokenString, err := token.SignedString([]byte("secret"))
+
+			if err != nil {
+				res.Error = "Error while generating token,Try again"
+				json.NewEncoder(w).Encode(res)
+				return
+			}
+
 			_, err = collection.InsertOne(context.TODO(), user)
 			if err != nil {
 				res.Error = "Error While Creating User, Try Again"
 				json.NewEncoder(w).Encode(res)
 				return
 			}
-			res.Result = "Registration Successful"
-			json.NewEncoder(w).Encode(res)
+
+
+			result.Token = tokenString
+			result.Password = ""
+
+			json.NewEncoder(w).Encode(result)
 			return
 		}
 
@@ -65,14 +83,13 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	res.Result = "Username already Exists!!"
+	res.Error = "Email already Exists!!"
 	json.NewEncoder(w).Encode(res)
 	return
 }
 
 func LoginHandler(w http.ResponseWriter, r *http.Request) {
 
-	w.Header().Set("Content-Type", "application/json")
 	var user model.User
 	body, _ := ioutil.ReadAll(r.Body)
 	err := json.Unmarshal(body, &user)
@@ -80,7 +97,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 	}
 
-	collection, err := db.GetCollection("users")
+	collection, err := db.GetDBCollection()
 
 	if err != nil {
 		log.Fatal(err)
@@ -88,10 +105,10 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	var result model.User
 	var res model.ResponseResult
 
-	err = collection.FindOne(context.TODO(), bson.D{{"username", user.Username}}).Decode(&result)
+	err = collection.FindOne(context.TODO(), bson.D{{"email", user.Email}}).Decode(&result)
 
 	if err != nil {
-		res.Error = "Invalid username"
+		res.Error = "Invalid email"
 		json.NewEncoder(w).Encode(res)
 		return
 	}

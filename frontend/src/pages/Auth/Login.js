@@ -1,25 +1,45 @@
-import React, { useCallback, useState } from 'react';
-import { useDispatch } from 'redux-react-hook';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useMappedState } from 'redux-react-hook';
 import { Link } from '@reach/router';
+import { ToastContainer, toast } from 'react-toastify';
 
-import { login as loginAction } from 'store/modules/auth/actions';
-
-import { useMutation } from "@apollo/react-hooks";
-import { CREATE_TODO_MUTATION } from 'schemas';
+import { login as loginAction, resetError } from 'store/modules/auth/actions';
+import { getError } from 'store/modules/auth/selectors';
 
 import Button from 'components/Button';
 import Panel from 'components/Panel';
 import TextField from 'components/TextField';
 import styles from './Login.module.scss';
 
+import 'react-toastify/dist/ReactToastify.css';
+
+const mapState = state => ({
+  error: getError(state)
+});
+
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const { error } = useMappedState(mapState);
   const dispatch = useDispatch();
-  const login = useCallback(() => dispatch(loginAction(email, password)), [email, password]);
+
+  const login = () => {
+    dispatch(resetError());
+    dispatch(loginAction(email, password));
+  }
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error, {
+        position: toast.POSITION.TOP_RIGHT
+      });
+    }
+  }, [error])
 
   return (
     <Panel title="Login">
+      <ToastContainer />
       <TextField
         type="email"
         label="Email"

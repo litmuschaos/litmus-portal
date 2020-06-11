@@ -87,6 +87,11 @@ export default class Connection {
       delete result.headers.Authorization;
     }
 
+    // Remove authorization header for authentication apis
+    if (options.noAuth) {
+      delete result.headers.Authorization; 
+    }
+
     // Transform params to underscore
     result.data = Humps.decamelizeKeys(result.data);
 

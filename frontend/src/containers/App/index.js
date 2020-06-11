@@ -5,7 +5,6 @@ import { bootstrap as bootstrapAction } from 'store/modules/app/actions';
 
 import Home from 'pages/Home';
 import Dashboard from 'pages/Dashboard';
-import TransactionAdd from 'pages/Transactions/Add';
 import Login from 'pages/Auth/Login';
 import SignUp from 'pages/Auth/SignUp';
 import Main from 'containers/Layouts/Main';
@@ -21,9 +20,9 @@ export default function App() {
   return (
     <Router>
       <Home path="/" />
-      <Full path="/app">
+      <Main path="/app">
         <Dashboard path="dashboard" />
-      </Full>
+      </Main>
       <Full path="/auth">
         <Login path="login" />
         <SignUp path="signup" />

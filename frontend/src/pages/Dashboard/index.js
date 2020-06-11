@@ -1,6 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import { useDispatch, useMappedState } from 'redux-react-hook';
-import { navigate } from '@reach/router';
+import React, { Fragment, useState } from 'react';
 
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { CREATE_TODO_MUTATION, TODO_LIST } from 'schemas';
@@ -12,15 +10,9 @@ const initialState = {
   num: 1
 }
 
-const mapState = state => ({
-  todoNum: 1
-});
-
-
 export default function Dashboard() {
-  const { todoNum } = useMappedState(mapState);
   const [state, setState] = useState(initialState);
-  const [createTodo, { error }] = useMutation(CREATE_TODO_MUTATION);
+  const [createTodo] = useMutation(CREATE_TODO_MUTATION);
   const {data} = useQuery(TODO_LIST);
 
   const addTodo = () => {
@@ -34,8 +26,8 @@ export default function Dashboard() {
   }
 
 
-  let todoList = data ? data.todos.map(todo => (
-    <div>{todo.text}</div>
+  let todoList = data ? data.todos.map((todo, idx) => (
+    <div key={`todo${idx}`}>{todo.text}</div>
   )) : [];
   console.log(todoList)
 

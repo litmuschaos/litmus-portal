@@ -1,4 +1,4 @@
-import { LOAD_CURRENT_USER, LOGIN, SET_TOKEN, SIGNUP } from './actions';
+import { LOAD_CURRENT_USER, LOGIN, SET_TOKEN, SIGNUP, RESET_ERROR } from './actions';
 
 const initialState = {
   /**
@@ -9,7 +9,8 @@ const initialState = {
   /**
    * The current user's information
    */
-  user: undefined
+  user: undefined,
+  error: null
 };
 
 export default function reducer(state = initialState, action) {
@@ -24,13 +25,18 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         token: action.payload.token,
-        user: action.payload.user,
+        error: action.payload.error,
       };
     case SET_TOKEN:
       return {
         ...state,
         token: action.payload.token,
       };
+    case RESET_ERROR:
+      return {
+        ...state,
+        error: null
+      }
     default:
       return state;
   }

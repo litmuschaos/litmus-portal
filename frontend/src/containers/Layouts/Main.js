@@ -25,8 +25,8 @@ export default function Main({ children }) {
       <div className="h-screen w-screen flex flex-col md:flex-row bg-grey-lighter">
         <div className="bg-orange-light flex md:block">
           <NavLink to="/app/dashboard" label="Dashboard" Icon={ChartIcon} />
-          <NavLink to="/app/transactions/add/expense" label="Add Expense" Icon={ExpenseIcon} />
-          <NavLink to="/app/transactions/add/income" label="Add Income" Icon={IncomeIcon} />
+          <NavLink to="" label="Tab1" Icon={ExpenseIcon} />
+          <NavLink to="" label="Tab2" Icon={IncomeIcon} />
         </div>
         <div className={classNames(styles.main, 'flex-1 p-4')}>
           {children}

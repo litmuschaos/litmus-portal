@@ -42,17 +42,15 @@ func main() {
 	r.Use(cors)
 
 	r.HandleFunc("/", restHandler)
-	r.HandleFunc("/signup", controller.RegisterHandler).
-		Methods("POST")
-	r.HandleFunc("/login", controller.LoginHandler).
-		Methods("POST")
-	r.HandleFunc("/profile", controller.ProfileHandler).
-		Methods("GET")
+	r.HandleFunc("/api/v1/signup", controller.RegisterHandler)
+	r.HandleFunc("/api/v1/login", controller.LoginHandler)
+	r.HandleFunc("/api/v1/profile", controller.ProfileHandler)
 	
 	// GraphQL Hanlder
 	graphqlSrv := handler.NewDefaultServer(generated.NewExecutableSchema(generated.Config{Resolvers: &graph.Resolver{}}))
 	r.HandleFunc("/gql", playground.Handler("GraphQL", "/query"))
 	r.Handle("/query", graphqlSrv)
+
 
 	srv := &http.Server{
 		Handler:      r,

@@ -7,6 +7,7 @@ export const LOGIN = generateActions('auth/LOGIN');
 export const LOAD_CURRENT_USER = generateActions('auth/LOAD_CURRENT_USER');
 export const SIGNUP = generateActions('auth/SIGNUP');
 export const SET_TOKEN = 'auth/SET_TOKEN';
+export const RESET_ERROR = 'auth/RESET_ERROR';
 
 /**
  * Request to the server to validate credentials
@@ -22,6 +23,7 @@ export function postLogin(email, password) {
         email,
         password
       },
+      noAuth: true
     },
   };
 }
@@ -29,17 +31,18 @@ export function postLogin(email, password) {
 /**
  * Creates a new user
  */
-export function postSignup(name, email, password) {
+export function postSignup(username, email, password) {
   return {
     types: SIGNUP,
     promise: {
       url: '/signup',
       method: 'post',
       data: {
-        name,
+        username,
         email,
         password
       },
+      noAuth: true
     },
   };
 }
@@ -52,7 +55,7 @@ export function signup(name, email, password) {
   return (dispatch) => {
     dispatch(postSignup(name, email, password))
       .then((response) => {
-        if (response.payload.success) {
+        if (!response.payload.error) {
           setCookie(Config.cookies.token, response.payload.token, 30);
           navigate('/app/dashboard');
         }
@@ -68,8 +71,10 @@ export function login(email, password) {
   return (dispatch) => {
     dispatch(postLogin(email, password))
       .then((response) => {
-        setCookie(Config.cookies.token, response.payload.token, 30);
-        navigate('/app/dashboard');
+        if (!response.payload.error) {
+          setCookie(Config.cookies.token, response.payload.token, 30);
+          navigate('/app/dashboard');
+        }
       });
   };
 }
@@ -81,7 +86,7 @@ export function loadCurrentUser() {
   return {
     types: LOAD_CURRENT_USER,
     promise: {
-      url: '/users/current',
+      url: '/profile',
     },
   };
 }
@@ -92,5 +97,11 @@ export function setToken(token) {
     payload: {
       token,
     },
+  };
+}
+
+export function resetError() {
+  return {
+    type: RESET_ERROR
   };
 }
