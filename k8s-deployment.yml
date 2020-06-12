@@ -19,21 +19,21 @@ spec:
         imagePullPolicy: Always
         ports:
           - containerPort: 8080  # Should match the port number that the Go application listens on
-        livenessProbe:           # To check the health of the Pod
-          httpGet:
-            path: /health
-            port: 8080
-            scheme: HTTP
-          initialDelaySeconds: 5
-          periodSeconds: 15
-          timeoutSeconds: 5
-        readinessProbe:          # To check if the Pod is ready or not
-          httpGet:
-            path: /readiness
-            port: 8080
-            scheme: HTTP
-          initialDelaySeconds: 5
-          timeoutSeconds: 1  
+        # livenessProbe:           # To check the health of the Pod
+        #   httpGet:
+        #     path: /health
+        #     port: 8080
+        #     scheme: HTTP
+        #   initialDelaySeconds: 5
+        #   periodSeconds: 15
+        #   timeoutSeconds: 5
+        # readinessProbe:          # To check if the Pod is ready or not
+        #   httpGet:
+        #     path: /readiness
+        #     port: 8080
+        #     scheme: HTTP
+        #   initialDelaySeconds: 5
+        #   timeoutSeconds: 1  
 ---
 apiVersion: v1
 kind: Service                    # Type of kubernetes resource

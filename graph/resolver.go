@@ -1,7 +1,7 @@
 package graph
 
 import (
-	"github.com/brainsolution/maya-service/graph/model"
+	"maya-app/graph/model"
 )
 
 // type Resolver struct {}

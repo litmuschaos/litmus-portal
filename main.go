@@ -14,9 +14,9 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
-	"github.com/brainsolution/maya-service/graph"
-	"github.com/brainsolution/maya-service/graph/generated"
-	"github.com/brainsolution/maya-service/controller"
+	"maya-app/graph"
+	"maya-app/graph/generated"
+	"maya-app/controller"
 )
 
 func restHandler(w http.ResponseWriter, r *http.Request) {

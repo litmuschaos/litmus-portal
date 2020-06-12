@@ -6,8 +6,8 @@ package graph
 import (
 	"context"
 
-	"github.com/brainsolution/maya-service/graph/generated"
-	"github.com/brainsolution/maya-service/graph/model"
+	"maya-app/graph/generated"
+	"maya-app/graph/model"
 	"github.com/satori/go.uuid"
 )
 
