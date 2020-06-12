@@ -8,3 +8,4 @@ tmp/
 frontend2/
 **/node_modules/
 .env
+.idea
