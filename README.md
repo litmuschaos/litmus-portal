@@ -5,7 +5,7 @@
 1) Install dependencies
 Install modules defined in go.mod
 ```bash
-go get <module_name>
+go mod download
 ```
 
 2) Create database

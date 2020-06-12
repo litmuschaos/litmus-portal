@@ -4,7 +4,7 @@ kind: Deployment                 # Type of Kubernetes resource
 metadata:
   name: maya-app           # Name of the Kubernetes resource
 spec:
-  replicas: 3                    # Number of pods to run at any given time
+  replicas: 4                    # Number of pods to run at any given time
   selector:
     matchLabels:
       app: maya-app        # This deployment applies to any Pods matching the specified label
@@ -15,25 +15,32 @@ spec:
     spec:                        # Spec for the container which will run in the Pod
       containers:
       - name: maya-app
-        image: maya/k8s-cre:1.0.0 
+        image: maya-app
         imagePullPolicy: Always
         ports:
           - containerPort: 8080  # Should match the port number that the Go application listens on
-        # livenessProbe:           # To check the health of the Pod
-        #   httpGet:
-        #     path: /health
-        #     port: 8080
-        #     scheme: HTTP
-        #   initialDelaySeconds: 5
-        #   periodSeconds: 15
-        #   timeoutSeconds: 5
-        # readinessProbe:          # To check if the Pod is ready or not
-        #   httpGet:
-        #     path: /readiness
-        #     port: 8080
-        #     scheme: HTTP
-        #   initialDelaySeconds: 5
-        #   timeoutSeconds: 1  
+        livenessProbe:           # To check the health of the Pod
+          httpGet:
+            path: /api
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 5
+          periodSeconds: 15
+          timeoutSeconds: 5
+        readinessProbe:          # To check if the Pod is ready or not
+          httpGet:
+            path: /query
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+        readinessProbe:          # To check if the Pod is ready or not
+          httpGet:
+            path: /gql
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
 ---
 apiVersion: v1
 kind: Service                    # Type of kubernetes resource

@@ -7,12 +7,12 @@ import App from './containers/App';
 import store from './store';
 import { setAppUpdated } from './store/modules/app/actions';
 import * as serviceWorker from './serviceWorker';
+import Config from 'config';
 
 import './index.css';
 
 const client = new ApolloClient({
-  // uri: 'https://48p1r2roz4.sse.codesandbox.io',
-  uri: 'http://localhost:8080/query'
+  uri: Config.grahqlEndpoint
 });
 
 ReactDOM.render(
