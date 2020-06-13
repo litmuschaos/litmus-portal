@@ -21,12 +21,12 @@ RUN npm install
 COPY . ./
  
 # Finally runs the application
-CMD [ "npm", "build" ]
+RUN npm run build
 
 # Stage 2: the production environment
 FROM nginx:alpine
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=react-build /frontend/build /usr/share/nginx/html
+COPY  --from=react-build /frontend/build /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
