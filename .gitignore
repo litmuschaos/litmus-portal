@@ -1,10 +1,9 @@
 main
-go-kubernetes
 out/
 vendor/
 _vendor-*
-.air.conf
 tmp/
-frontend2/
 **/node_modules/
 .env
+maya-service
+maya-app
