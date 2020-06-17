@@ -11,7 +11,7 @@ export const SET_ACTIVE_TRANSACTION = 'transactions/SET_ACTIVE_TRANSACTION';
 
 /**
  * Creates a new transaction
- * @param {Object} data 
+ * @param {Object} data
  */
 export function postTransaction(data) {
   return {
@@ -26,7 +26,7 @@ export function postTransaction(data) {
 
 /**
  * Updates an existing transaction
- * @param {Object} data 
+ * @param {Object} data
  */
 export function putTransaction(data) {
   return {
@@ -102,7 +102,7 @@ export function getPopularTags() {
 
 /**
  * Set the active transaction to edit in the form
- * @param {Object} transaction 
+ * @param {Object} transaction
  */
 export function setActiveTransaction(transaction) {
   return {

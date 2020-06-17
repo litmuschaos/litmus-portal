@@ -1,2 +1,1 @@
-
-export const isAppUpdated = state => state.app.updated;
+export const isAppUpdated = (state) => state.app.updated;

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
-import { Router } from "@reach/router";
+import { Router } from '@reach/router';
 import { useDispatch } from 'redux-react-hook';
 import { bootstrap as bootstrapAction } from 'store/modules/app/actions';
 

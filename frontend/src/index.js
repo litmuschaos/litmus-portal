@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { StoreProvider } from 'redux-react-hook';
 import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from "@apollo/react-hooks";
+import { ApolloProvider } from '@apollo/react-hooks';
 import App from './containers/App';
 import store from './store';
 import { setAppUpdated } from './store/modules/app/actions';
@@ -12,15 +12,15 @@ import Config from 'config';
 import './index.css';
 
 const client = new ApolloClient({
-  uri: Config.grahqlEndpoint
+  uri: Config.grahqlEndpoint,
 });
 
 ReactDOM.render(
-	<ApolloProvider client={client}>
-	  <StoreProvider value={store}>
-	    <App />
-	  </StoreProvider>
-	</ApolloProvider>,
+  <ApolloProvider client={client}>
+    <StoreProvider value={store}>
+      <App />
+    </StoreProvider>
+  </ApolloProvider>,
   document.getElementById('root')
 );
 

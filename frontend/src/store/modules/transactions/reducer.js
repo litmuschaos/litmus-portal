@@ -1,4 +1,11 @@
-import { GET_LATEST_TRANSACTIONS, GET_TOTALS, GET_TOTALS_BY_DAY, GET_TOTALS_BY_TAGS, GET_POPULAR_TAGS, SET_ACTIVE_TRANSACTION } from './actions';
+import {
+  GET_LATEST_TRANSACTIONS,
+  GET_TOTALS,
+  GET_TOTALS_BY_DAY,
+  GET_TOTALS_BY_TAGS,
+  GET_POPULAR_TAGS,
+  SET_ACTIVE_TRANSACTION,
+} from './actions';
 
 const initialState = {
   /**
@@ -39,7 +46,7 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case GET_LATEST_TRANSACTIONS.SUCCESS:
       return {
         ...state,

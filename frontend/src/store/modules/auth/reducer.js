@@ -10,11 +10,11 @@ const initialState = {
    * The current user's information
    */
   user: undefined,
-  error: null
+  error: null,
 };
 
 export default function reducer(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case LOAD_CURRENT_USER.SUCCESS:
       return {
         ...state,
@@ -35,8 +35,8 @@ export default function reducer(state = initialState, action) {
     case RESET_ERROR:
       return {
         ...state,
-        error: null
-      }
+        error: null,
+      };
     default:
       return state;
   }

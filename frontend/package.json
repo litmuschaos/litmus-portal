@@ -8,6 +8,8 @@
     "build": "cross-env NODE_PATH=src yarn build:css && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "lint": "eslint src",
+    "format": "prettier --write \"**/*.+(ts|tsx|js|jsx|json|yml|yaml|css|md|vue)\"",
     "build:css": "postcss src/theme/base.css -o src/index.css",
     "watch:css": "postcss src/theme/base.css -o src/index.css -w"
   },
@@ -23,6 +25,7 @@
     "graphql": "^15.1.0",
     "graphql-tag": "^2.10.3",
     "humps": "^2.0.1",
+    "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-scripts": "^3.4.1",
@@ -44,9 +47,18 @@
   "devDependencies": {
     "autoprefixer": "^9.3.1",
     "cross-env": "^5.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^2.5.0",
     "globby": "^9.0.0",
     "node-sass": "^4.9.4",
     "postcss-cli": "^6.0.1",
+    "prettier": "^2.0.5",
     "redux-devtools": "^3.4.1",
     "tailwindcss": "^0.6.6"
   }

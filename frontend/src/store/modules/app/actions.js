@@ -6,7 +6,7 @@ export const SET_APP_UPDATED = 'app/SET_APP_UPDATED';
 
 /**
  * Bootstrap the APP!! All initial requirements
- * 
+ *
  * - Checks if there's a token in the cookie and
  * then loads the user's information.
  * - Load latest transactions if logged in user

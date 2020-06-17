@@ -11,8 +11,8 @@ import Panel from 'components/Panel';
 import TextField from 'components/TextField';
 import styles from './Login.module.scss';
 
-const mapState = state => ({
-  error: getError(state)
+const mapState = (state) => ({
+  error: getError(state),
 });
 
 export default function SignUp() {
@@ -26,15 +26,15 @@ export default function SignUp() {
   const signup = () => {
     dispatch(resetError());
     dispatch(signupAction(name, email, password));
-  }
+  };
 
   useEffect(() => {
     if (error) {
       toast.error(error, {
-        position: toast.POSITION.TOP_RIGHT
+        position: toast.POSITION.TOP_RIGHT,
       });
     }
-  }, [error])
+  }, [error]);
 
   return (
     <Panel title="Sign App">
@@ -63,7 +63,12 @@ export default function SignUp() {
         onChange={(event) => setPassword(event.target.value)}
       />
       <Button onClick={signup}>Submit</Button>
-      <p className="mt-4 text-grey-darker">Already a member? <Link to="/auth/login" className="text-orange">Login</Link></p>
+      <p className="mt-4 text-grey-darker">
+        Already a member?{' '}
+        <Link to="/auth/login" className="text-orange">
+          Login
+        </Link>
+      </p>
     </Panel>
   );
 }

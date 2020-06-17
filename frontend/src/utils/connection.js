@@ -18,11 +18,13 @@ const parseResponse = (response) => {
 
   if (response.status >= 400) {
     // When the server response contains important JSON data for errors
-    return json.then(errors => ({
-      response: errors,
-      endpoint: response.url,
-      statusCode: response.status,
-    })).then(Promise.reject.bind(Promise));
+    return json
+      .then((errors) => ({
+        response: errors,
+        endpoint: response.url,
+        statusCode: response.status,
+      }))
+      .then(Promise.reject.bind(Promise));
   }
 
   return json;
@@ -89,7 +91,7 @@ export default class Connection {
 
     // Remove authorization header for authentication apis
     if (options.noAuth) {
-      delete result.headers.Authorization; 
+      delete result.headers.Authorization;
     }
 
     // Transform params to underscore
@@ -98,7 +100,7 @@ export default class Connection {
     // Stringify params
     if (result.method !== 'POST' && result.method !== 'PUT') {
       if (result.method === 'GET' && result.data) {
-        const params = Object.keys(result.data).map(name => `${name}=${result.data[name]}`);
+        const params = Object.keys(result.data).map((name) => `${name}=${result.data[name]}`);
         options.url = `${options.url}${params.length > 0 ? `?${params.join('&')}` : ''}`;
       } else {
         result.params = JSON.stringify(result.data);
@@ -139,11 +141,11 @@ export default class Connection {
         (err) => {
           clearTimeout(timeoutId);
           reject(err);
-        },
+        }
       );
     })
-    .then(parseResponse)
-    .catch(error => handleConnectionErrors(error, { method: result.method, url: options.url }));
+      .then(parseResponse)
+      .catch((error) => handleConnectionErrors(error, { method: result.method, url: options.url }));
   }
 
   getToken() {

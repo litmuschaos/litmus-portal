@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "@reach/router";
+import { Link } from '@reach/router';
 import { useMappedState } from 'redux-react-hook';
 import classNames from 'classnames';
 import { isAppUpdated } from 'store/modules/app/selectors';
@@ -12,10 +12,10 @@ import Full from 'containers/Layouts/Full';
 import Login from 'pages/Auth/Login';
 import styles from './Layouts.module.scss';
 
-const mapState = state => ({
+const mapState = (state) => ({
   isAuthenticated: !!state.auth.token,
   updated: isAppUpdated(state),
-})
+});
 
 export default function Main({ children }) {
   const { isAuthenticated, updated } = useMappedState(mapState);
@@ -28,14 +28,15 @@ export default function Main({ children }) {
           <NavLink to="" label="Tab1" Icon={ExpenseIcon} />
           <NavLink to="" label="Tab2" Icon={IncomeIcon} />
         </div>
-        <div className={classNames(styles.main, 'flex-1 p-4')}>
-          {children}
-        </div>
-        { updated &&
-          <div className="fixed pin-b py-4 px-8 bg-black text-white" onClick={() => window.location.reload()}>
+        <div className={classNames(styles.main, 'flex-1 p-4')}>{children}</div>
+        {updated && (
+          <div
+            className="fixed pin-b py-4 px-8 bg-black text-white"
+            onClick={() => window.location.reload()}
+          >
             There's a new update, click here to refresh the app!
           </div>
-        }
+        )}
       </div>
     );
   }

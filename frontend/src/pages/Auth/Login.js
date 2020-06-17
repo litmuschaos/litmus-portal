@@ -13,8 +13,8 @@ import styles from './Login.module.scss';
 
 import 'react-toastify/dist/ReactToastify.css';
 
-const mapState = state => ({
-  error: getError(state)
+const mapState = (state) => ({
+  error: getError(state),
 });
 
 export default function Login() {
@@ -27,15 +27,15 @@ export default function Login() {
   const login = () => {
     dispatch(resetError());
     dispatch(loginAction(email, password));
-  }
+  };
 
   useEffect(() => {
     if (error) {
       toast.error(error, {
-        position: toast.POSITION.TOP_RIGHT
+        position: toast.POSITION.TOP_RIGHT,
       });
     }
-  }, [error])
+  }, [error]);
 
   return (
     <Panel title="Login">
@@ -56,8 +56,13 @@ export default function Login() {
         value={password}
         onChange={(event) => setPassword(event.target.value)}
       />
-      <Button onClick={e => login()}>Submit</Button>
-      <p className="mt-4 text-grey-darker">Don't have an account? <Link to="/auth/signup" className="text-orange">Sign Up</Link></p>
+      <Button onClick={(e) => login()}>Submit</Button>
+      <p className="mt-4 text-grey-darker">
+        Don't have an account?{' '}
+        <Link to="/auth/signup" className="text-orange">
+          Sign Up
+        </Link>
+      </p>
     </Panel>
   );
 }

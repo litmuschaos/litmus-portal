@@ -21,9 +21,9 @@ export function postLogin(email, password) {
       method: 'post',
       data: {
         email,
-        password
+        password,
       },
-      noAuth: true
+      noAuth: true,
     },
   };
 }
@@ -40,9 +40,9 @@ export function postSignup(username, email, password) {
       data: {
         username,
         email,
-        password
+        password,
       },
-      noAuth: true
+      noAuth: true,
     },
   };
 }
@@ -53,13 +53,12 @@ export function postSignup(username, email, password) {
  */
 export function signup(name, email, password) {
   return (dispatch) => {
-    dispatch(postSignup(name, email, password))
-      .then((response) => {
-        if (!response.payload.error) {
-          setCookie(Config.cookies.token, response.payload.token, 30);
-          navigate('/app/dashboard');
-        }
-      });
+    dispatch(postSignup(name, email, password)).then((response) => {
+      if (!response.payload.error) {
+        setCookie(Config.cookies.token, response.payload.token, 30);
+        navigate('/app/dashboard');
+      }
+    });
   };
 }
 
@@ -69,13 +68,12 @@ export function signup(name, email, password) {
  */
 export function login(email, password) {
   return (dispatch) => {
-    dispatch(postLogin(email, password))
-      .then((response) => {
-        if (!response.payload.error) {
-          setCookie(Config.cookies.token, response.payload.token, 30);
-          navigate('/app/dashboard');
-        }
-      });
+    dispatch(postLogin(email, password)).then((response) => {
+      if (!response.payload.error) {
+        setCookie(Config.cookies.token, response.payload.token, 30);
+        navigate('/app/dashboard');
+      }
+    });
   };
 }
 
@@ -102,6 +100,6 @@ export function setToken(token) {
 
 export function resetError() {
   return {
-    type: RESET_ERROR
+    type: RESET_ERROR,
   };
 }

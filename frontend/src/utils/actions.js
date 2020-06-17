@@ -1,4 +1,3 @@
-
 export default function requestActions(name) {
   return {
     REQUEST: name,
