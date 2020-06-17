@@ -1,16 +1,16 @@
-import React, { useCallback, useEffect } from 'react';
 import { Router } from '@reach/router';
-import { useDispatch } from 'redux-react-hook';
-import { bootstrap as bootstrapAction } from 'store/modules/app/actions';
-
-import Home from 'pages/Home';
-import Dashboard from 'pages/Dashboard';
+import Full from 'containers/Layouts/Full';
+import Main from 'containers/Layouts/Main';
 import Login from 'pages/Auth/Login';
 import SignUp from 'pages/Auth/SignUp';
-import Main from 'containers/Layouts/Main';
-import Full from 'containers/Layouts/Full';
+import Dashboard from 'pages/Dashboard';
+import Home from 'pages/Home';
+import React, { useCallback, useEffect } from 'react';
+import { useDispatch } from 'redux-react-hook';
+import { bootstrap as bootstrapAction } from 'store/modules/app/actions';
+import withTheme from 'theme/themeHoc';
 
-export default function App() {
+function App() {
   const dispatch = useDispatch();
   const bootstrap = useCallback(() => dispatch(bootstrapAction()));
   useEffect(() => {
@@ -30,3 +30,5 @@ export default function App() {
     </Router>
   );
 }
+
+export default withTheme(App);

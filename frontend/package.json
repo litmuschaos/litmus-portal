@@ -4,20 +4,19 @@
   "private": true,
   "homepage": "https://litmus-portal.com",
   "scripts": {
-    "start": "yarn watch:css & react-scripts start",
-    "build": "cross-env NODE_PATH=src yarn build:css && react-scripts build",
+    "start": "react-scripts start",
+    "build": "cross-env NODE_PATH=src react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint src",
-    "format": "prettier --write \"**/*.+(ts|tsx|js|jsx|json|yml|yaml|css|md|vue)\"",
-    "build:css": "postcss src/theme/base.css -o src/index.css",
-    "watch:css": "postcss src/theme/base.css -o src/index.css -w"
+    "format": "prettier --write \"**/*.+(ts|tsx|js|jsx|json|yml|yaml|css|md|vue)\""
   },
   "dependencies": {
     "@apollo/client": "^3.0.0-rc.2",
     "@apollo/react-components": "^3.1.5",
     "@apollo/react-hoc": "^3.1.5",
     "@apollo/react-hooks": "^3.1.5",
+    "@material-ui/core": "^4.10.2",
     "@reach/router": "^1.2.1",
     "apollo-boost": "^0.4.9",
     "classnames": "^2.2.6",
