@@ -5,7 +5,6 @@ import Stepper from "@material-ui/core/Stepper";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
 import { Center } from "../../containers/layouts/Center";
-import Footer from "../Footer";
 import { Loader } from "../Loader";
 import { useStyles } from "./styles";
 
@@ -26,7 +25,7 @@ function getStepContent(stepIndex: number): React.ReactNode {
 		case 1:
 			return <Loader />;
 		case 2:
-			return <Footer showStat={false} />;
+			return "Show something random";
 		default:
 			return (
 				<Center>

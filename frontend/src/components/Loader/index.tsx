@@ -1,6 +1,6 @@
 import { CircularProgress, makeStyles, Theme } from "@material-ui/core";
 import React from "react";
-import { Center } from "../../containers/layouts/Center";
+import { Center } from "../../containers/layouts";
 
 const useStyles = makeStyles((theme: Theme) => ({
 	spinner: {

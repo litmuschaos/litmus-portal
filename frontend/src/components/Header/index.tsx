@@ -11,7 +11,7 @@ export function Header() {
 		<AppBar position="relative" className={classes.appBar}>
 			<Toolbar>
 				<Typography variant="h6" noWrap>
-					Permanent drawer
+					Litmus Portal
 				</Typography>
 			</Toolbar>
 		</AppBar>

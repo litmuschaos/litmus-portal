@@ -10,13 +10,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		position: "relative",
 		width: "100%",
 		height: "100%",
-		color: theme.palette.primary.contrastText,
+		color: theme.palette.text.primary,
 	},
 	content: {
 		backgroundColor: theme.palette.background.default,
-		width: "100%",
-	},
-	routeBody: {
 		width: "100%",
 	},
 }));
